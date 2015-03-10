@@ -19,13 +19,17 @@ script:
   - ls wheelhouse/*.whl
   - pip install wheelhouse/*.whl
 
-before_deploy: tar cf wheel.tar wheelhouse
+branches:
+  except:
+    - master
 
 deploy:
   provider: releases
   api_key:
     secure: QmQDXid90nDaW8mcP49lvILu2LEaHCajzLxSsPneTmFOQ5c7CAlQHPFqPxTkk6QXOYJ+i6+YAtBop4RrYXNncVz5A9gS1rH1yEok31B5lwDZiOWH3mxjSwyHn2RhZEL96gjNPN9kNWQO8pfCd2tKHPuM9L9C+Y6Jr7+cXme3PUE=
-  file: wheel.tar
+  file: wheelhouse/*.whl
+  file_glob: true
+  skip_cleanup: true
   on:
     tags: true
     repo: lepture/python-wheels
