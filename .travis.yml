@@ -25,4 +25,5 @@ deploy:
     secure: QmQDXid90nDaW8mcP49lvILu2LEaHCajzLxSsPneTmFOQ5c7CAlQHPFqPxTkk6QXOYJ+i6+YAtBop4RrYXNncVz5A9gS1rH1yEok31B5lwDZiOWH3mxjSwyHn2RhZEL96gjNPN9kNWQO8pfCd2tKHPuM9L9C+Y6Jr7+cXme3PUE=
   file: wheelhouse/*.whl
   on:
+    tags: true
     repo: lepture/python-wheels
