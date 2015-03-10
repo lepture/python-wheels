@@ -1,0 +1,28 @@
+language:
+  - objective-c
+
+env:
+  matrix:
+    - VERSION=2.7.9
+    - VERSION=3.3.5
+    - VERSION=3.4.3
+
+install:
+  - source terryfy/travis_tools.sh
+  - source terryfy/library_installers.sh
+  - clean_builds
+  - get_python_environment macpython $VERSION venv
+  - pip install wheel cython
+  - pip wheel -w wheelhouse ./mistune
+
+script:
+  - ls wheelhouse/*.whl
+  - pip install wheelhouse/*.whl
+
+deploy:
+  provider: releases
+  api_key:
+    secure: QmQDXid90nDaW8mcP49lvILu2LEaHCajzLxSsPneTmFOQ5c7CAlQHPFqPxTkk6QXOYJ+i6+YAtBop4RrYXNncVz5A9gS1rH1yEok31B5lwDZiOWH3mxjSwyHn2RhZEL96gjNPN9kNWQO8pfCd2tKHPuM9L9C+Y6Jr7+cXme3PUE=
+  file: wheelhouse/*.whl
+  on:
+    repo: lepture/python-wheels
